@@ -15,6 +15,7 @@ public class TicketsDto {
   @NotBlank(message = "Passenger name is required")
   private String passenger;
 
-  private boolean isCheckedIn = false;
+  @NotBlank(message = "Is the passenger check-in True or False?")
+  private boolean isCheckedIn;
 
 }
