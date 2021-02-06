@@ -20,6 +20,8 @@ class TicketsApplicationTests {
 		ticketsDto.setCustomerId(101L);
 		ticketsDto.setPassenger("Jon Doe");
 		ticketsDto.setCheckedIn(false);
+
+		ticketsController.createTicket(ticketsDto);
 	}
 
 }
