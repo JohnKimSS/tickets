@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class CheckInDto {
+
   @NotBlank(message = "Ticket ID is required")
   private long id;
 
