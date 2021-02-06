@@ -49,18 +49,25 @@ public class TicketsController {
   }
 
   @PutMapping("/{id}")
-    public ResponseEntity<?> checkIn(@PathVariable Long id, @Valid @RequestBody CheckInDto ticketDto) {
-    CheckInDto checkInDto = new CheckInDto();
+    public ResponseEntity<?> checkIn(@PathVariable Long id, @Valid @RequestBody CheckInDto checkInDto) {
+      System.out.println("Ticket Update Request Received");
+      System.out.println("Controller Line 53" + checkInDto);
     CheckInDtoMap checkInDtoMap = new CheckInDtoMap();
+
     if(id == null) {
       return ResponseEntity.badRequest().body("Ticket ID is required to check-in");
     }
 
     Ticket ticketCheckingIn = checkInDtoMap.map(checkInDto);
+        System.out.println("Controller Line 61 " + ticketCheckingIn);
     ticketCheckingIn.setId(id);
+    ticketCheckingIn.setPassenger(ticketCheckingIn.getPassenger());
+    ticketCheckingIn.setCustomerId(ticketCheckingIn.getCustomerId());
+    ticketCheckingIn.setFlightId(ticketCheckingIn.getFlightId());
     ticketCheckingIn.setCheckedIn(true);
-
+        System.out.println("Controller line 64 " + ticketCheckingIn);
     try {
+      System.out.println("Passing DTO as DO to Service tier");
       Ticket checkedInTicket = ticketsService.checkIn(ticketCheckingIn);
       return ResponseEntity.ok(checkedInTicket);
     } catch(NoSuchElementException err) {

@@ -7,7 +7,7 @@ public class CheckInDtoMap {
 
   public static Ticket map(CheckInDto checkInDto) {
     Ticket ticket = new Ticket();
-    checkInDto.setCheckedIn(true);
+    checkInDto.setCheckedIn(checkInDto.isCheckedIn());
 
     return ticket;
   }

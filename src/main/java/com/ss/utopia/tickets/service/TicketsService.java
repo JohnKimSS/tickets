@@ -29,13 +29,17 @@ public class TicketsService {
 
   public Ticket checkIn(Ticket ticket) {
     Long id = ticket.getId();
+        System.out.println("Servicing ticket ID: " + id);
     if (id == null || id < 1) {
       throw new IllegalArgumentException("ID entered is not valid.");
     }
     if(ticketsRepository.findById(id).isEmpty()){
       throw new NoSuchElementException("No ticket with ID "+ id + " exists.");
     }
-    return ticketsRepository.save(ticket);
+    Ticket checkedTicket = ticketsRepository.findById(id).get();
+    checkedTicket.setCheckedIn(true);
+        System.out.println("Ticket to be written to DB: " + checkedTicket);
+    return ticketsRepository.save(checkedTicket);
   }
 
 }

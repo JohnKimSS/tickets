@@ -1,14 +1,14 @@
 package com.ss.utopia.tickets.dto;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class CheckInDto {
 
-  @NotBlank(message = "Ticket ID is required")
+  @NotNull
   private long id;
-
+  @NotNull
   private boolean checkedIn;
 
 }
